@@ -4,15 +4,24 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:postgresql://62.109.17.31:5432/postgres</property>
+    <property name="connection.url">jdbc:postgresql://localhost:5432/test_bd</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="connection.username">postgres</property>
-    <property name="connection.password">postgres</property>
-
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
-    <!--property name='dialect'>org.hibernate.dialect.PostgreSQLDialect</property-->
-    <!--mapping resource='hbm/user.hbm.xml'/-->
-    <mapping class="User"/>
+    <property name="connection.password">uJGA!9055</property>
+    <mapping class="Hit"/>
   </session-factory>
 </hibernate-configuration>
+
+
+<!--property name="connection.url">jdbc:postgresql://62.109.17.31:5432/postgres</property>
+<property name="connection.driver_class">org.postgresql.Driver</property>
+<property name="connection.username">postgres</property>
+<property name="connection.password">postgres</property-->
+
+<!--session-factory>
+<property name="connection.url">jdbc:postgresql://pg:5432/studs</property>
+<property name="connection.driver_class">org.postgresql.Driver</property>
+<property name="connection.username">s335182</property>
+<property name="connection.password">xUntDYqupw6TuVBy</property>
+<mapping class="Hit"/>
+</session-factory-->

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f='http://java.sun.com/jsf/core'
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<f:view>
+    <h:head>
+        <link rel="stylesheet" href="css/header.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/form.css"/>
+        <link rel="stylesheet" href="css/table.css"/>
+        <link rel="stylesheet" href="css/point.css"/>
+        <title>Hit checker</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    </h:head>
+
+    <h:body >
+        <div class="formImage">
+            <div id="formButton">
+                <h:form class="inputform" id="inputform">
+                    <div class="headerFrom" >Введите значения для проверки</div>
+                    <div class="oneValue">
+                        <h:outputLabel class="value-header" styleClass="headers" value="Введите значение X:    "/>
+                        <div class="chooseX">
+                            <div class="links">
+                                <h:commandLink class="xValue" type="button" value="  -5  " action="#{userMBean.setX(-5)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="xValue" type="button" value="  -4  " action="#{userMBean.setX(-4)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="xValue" type="button" value="  -3  " action="#{userMBean.setX(-3)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="xValue"  type="button" value="  -2  " action="#{userMBean.setX(-2)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink  class="xValue"  type="button" value="  -1  " action="#{userMBean.setX(-1)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink  class="xValue"  type="button" value="   0   " action="#{userMBean.setX(0)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink  class="xValue"  type="button" value="   1   " action="#{userMBean.setX(1)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="xValue"  type="button" value="   2   " action="#{userMBean.setX(2)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="xValue"  type="button" value="   3   " action="#{userMBean.setX(3)}">
+                                    <f:ajax render="xVal xVal-view"/>
+                                </h:commandLink>
+
+                                <h:inputHidden id="xVal" name="xVal" value="#{userMBean.x}"
+                                               converterMessage="X - число!">
+                                    <f:validator validatorId="xValidator"/>
+                                </h:inputHidden>
+                                <h:message for="xVal" style="color:#960a0a"/>
+                            </div>
+                            <div class="chosenValue" id="xHeaderValue">
+                                <h:outputText id="xVal-view" value="${userMBean.x}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="values-row">
+                        <div id="yHeaderValue">
+                        <div class="value-header" id="yHeader">Введите значение Y:       </div>
+                        <h:inputText id="yVal" value="#{userMBean.y}" name="yVal" styleClass="valueY" a:placeholder=" от -5 до 3" converterMessage="Y - число!">
+                            <f:validator validatorId="yValidator"/>
+                        </h:inputText>
+                        </div>
+                        <h:message for="yVal" style="color:#960a0a"/>
+                    </div>
+
+                    <div class="oneValue">
+                        <h:outputLabel class="value-header" styleClass="headers" value="    Выберите значение R:    "/>
+                        <div class="chooseR">
+                            <div class="links">
+                                <h:commandLink class="rValue" type="button" value="  1  " action="#{userMBean.setR(1)}">
+                                    <f:ajax render="rVal rVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="rValue" type="button" value="  1.5  " action="#{userMBean.setR(1.5)}">
+                                    <f:ajax render="rVal rVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="rValue" type="button" value="  2  " action="#{userMBean.setR(2)}">
+                                    <f:ajax render="rVal rVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="rValue" type="button" value="  2.5  " action="#{userMBean.setR(2.5)}">
+                                    <f:ajax render="rVal rVal-view"/>
+                                </h:commandLink>
+                                <h:commandLink class="rValue" type="button" value="  3  " action="#{userMBean.setR(3)}">
+                                    <f:ajax render="rVal rVal-view"/>
+                                </h:commandLink>
+
+                                <h:inputHidden id="rVal" value="#{userMBean.r}">
+                                    <f:validator validatorId="rValidator"/>
+                                </h:inputHidden>
+                                <h:message for="rVal" style="color:#960a0a"/>
+
+                            </div>
+                            <div class="chosenValue" id="rHeadVal">
+                                <h:outputText id="rVal-view" name="rValFinal" value="${userMBean.r}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bbutton">
+                        <h:commandButton value="Отправить" styleClass="addButton" id="addButton" name="addButton" action='#{userMBean.save}'/>
+                        <h:commandButton id="cleanButton" styleClass="addButton" value="Очистить таблицу"  action='#{userMBean.clean}'/>
+                    </div>
+
+                </h:form>
+                <div class="buttonGoFirst">
+                    <h:link id="toFirstPageButton" value="Вернуться на стартовую страницу" type="button" outcome="main"/>
+                </div>
+
+            </div>
+            <div class="image">
+                <h:panelGroup class="area-wrapper" id="graph-image">
+                    <img id="img" src="img/area.png" alt="area"/>
+                        <ui:repeat var="point"  value='#{userMBean.getHits()}' varStatus="status">
+                            <div class="dot"
+                                 style="top: ${235 - point.y*175/(1.25*point.getLastR())-4}px;
+                                        left: ${1227 + point.x*175/(1.25*point.getLastR())-4}px;
+                                        background: ${point.ishit ? 'green':'#960a0a'};">
+                            </div>
+                        </ui:repeat>
+                    <h:outputScript library="js" name="dot.js"/>
+                </h:panelGroup>
+            </div>
+
+            <h:dataTable id='users' value='#{userMBean.getHits()}' var="hit">
+                <h:column>
+                    <f:facet name='header'>
+                        <h:outputText value='X' />
+                    </f:facet>
+                    <h:outputText value='#{hit.x}' class="elementX"/>
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>
+                        <h:outputText value='Y' />
+                    </f:facet>
+                    <h:outputText value='#{hit.y}'  class="elementY"/>
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>
+                        <h:outputText value='R' />
+                    </f:facet>
+                    <h:outputText value='#{hit.r}'  class="elementR"/>
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>
+                        <h:outputText value='Результат' />
+                    </f:facet>
+                    <h:outputText value='#{hit.ishit}' />
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>
+                        <h:outputText value='Текущее время' />
+                    </f:facet>
+                    <h:outputText value='#{hit.currenttime}' />
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>
+                        <h:outputText value='Время выполнения' />
+                    </f:facet>
+                    <h:outputText value='#{hit.executiontime} нс' />
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</f:view>
+</html>

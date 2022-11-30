@@ -1,12 +1,10 @@
 import java.io.Serializable;
-import java.sql.BatchUpdateException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 import lombok.Data;
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -17,46 +15,54 @@ public class UserManagedBean implements Serializable{
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
-    private String name;
-    private String surname;
-    private String message;
+    private double x;
+    private double y;
+    private double r = 2.0;
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getSurname() {
-        return surname;
-    }
-    public void setSurname(String surname) {
-        this.surname = surname;
+
+    public double getX() {
+        return x;
     }
 
-    public String getMessage() {
-        StringBuffer strBuff = new StringBuffer();
-        strBuff.append("Name : ").append(this.getName());
-        strBuff.append(", Surname : ").append(this.getSurname());
-        this.setMessage(strBuff.toString());
-        return this.message;
+    public void setX(double x) {
+        this.x = x;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getR() {
+        return r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
     }
 
     public String save() {
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
+        long startTime = System.nanoTime();
+        Point point = new Point();
+        point.setX(this.getX());
+        point.setY(this.getY());
+        point.setR(this.getR());
+        Hit hit = new Hit();
+        hit.setPoint(point);
+        hit.setIshit(point.countHit());
+        hit.setCurrenttime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        hit.setExecutiontime(System.nanoTime() - startTime);
+        Hit.setLastR(this.getR());
 
-        User user = new User();
-        user.setName(this.getName());
-        user.setSurname(this.getSurname());
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.save(user);
+            session.save(hit);
             tx.commit();
             result = SUCCESS;
         } catch (Exception e) {
@@ -71,14 +77,24 @@ public class UserManagedBean implements Serializable{
         return result;
     }
 
-    public List<User> getUsers() {
+    public List<Hit> getHits() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<User>  userList = session.createCriteria(User.class).list();
-        return userList;
+        List<Hit>  hitsList = session.createCriteria(Hit.class).list();
+        return hitsList;
     }
+   /* public double getLastR(List<Hit>  hitsList){
+        hitsList.toArray();
+        Hit hit = hitsList.get(hitsList.size()-1);
+        return hit.getR();
 
-    public void reset() {
-        this.setName("");
-        this.setSurname("");
+    }*/
+
+    public void clean(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                session.createQuery("delete FROM Hit")
+                        .executeUpdate();
+                session.getTransaction().commit();
+                session.close();
     }
 }

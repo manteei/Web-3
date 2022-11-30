@@ -1,0 +1,111 @@
+.headerFrom{
+    margin: 20px;
+}
+#xVal, #yVal{
+    margin-top: 20px;
+    margin-left: 40px;
+    border-radius:10px;
+    border-color: #36ab81;
+    height: 20px;
+    background-color: white;
+    width: 160px;
+}
+
+.oneValue{
+    display:inline-block;
+    margin: 30px;
+}
+.headers{
+    display:inline-block;
+}
+.chooseX{
+    display:inline-block;
+}
+.chooseR{
+    display:inline-block;
+}
+.links{
+    display:inline-block;
+}
+.xValue{
+    text-decoration: none;
+    color: #002c48;
+}
+
+.rValue{
+    text-decoration: none;
+    color: #002c48;
+}
+
+.chosenValue{
+    display:inline-block;
+    border: 2px solid #002c48;
+    padding: 0.2rem;
+    width: 4.25rem;
+    height: calc(2.25rem + 2px) ;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+
+}
+.valueY{
+    width: calc(7.5rem + 2px);
+    height: 2.25rem;
+    border: 2px solid #002c48;
+    color: #002c48;
+    font-size: 20px;
+
+}
+#yHeader{
+    display: inline-block;
+}
+.values-row{
+    display: inline-block;
+}
+.addButton{
+    color: #002c48;
+    border-radius:10px;
+    font-size: 20px;
+    width: 200px;
+    background-color: #99d9c1;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #002c48;
+    margin-left: 20px;
+}
+.addButton:hover{
+    background-color: #36ab81;
+}
+
+
+.image{
+    opacity: 0.75;
+    background: #99d9c1;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #002c48;
+    border-radius:10px;
+    width: 440px;
+    display:inline-block;
+    margin: 20px;
+    padding: 5px;
+
+}
+#formButton{
+    display: inline-block;
+}
+.formImage{
+    margin-left: 45px;
+}
+
+.dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #8b0000;
+    pointer-events: none;
+}
+#yHeaderValue{
+    display: inline-block;
+}
