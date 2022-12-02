@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 1) сделать constrains через hibernate
@@ -18,25 +20,24 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "table_name")
+@Table(name = "hits")
 public class Hit {
     @Id
     @GenericGenerator(name="inc" , strategy="increment")
     @GeneratedValue(generator="inc")
-    @Column(name = "id")
     private int id;
-    @Column(name = "x")
+    @Column
     private double x;
-    @Column(name = "y")
+    @Column
     private double y;
-    @Column(name = "r")
+    @Column
     private double r;
-    @Column(name = "ishit")
+    @Column
     private boolean ishit;
-    @Column(name = "currenttime")
-    private String currenttime;
-    @Column(name = "executetime")
-    private long executetime;
+
+    @OneToMany(mappedBy="hit", cascade=CascadeType.ALL)
+    private List<HitTime> hitTimes = new ArrayList<>();
+
     static double lastR;
 
     public static double getLastR() {
@@ -46,12 +47,17 @@ public class Hit {
         Hit.lastR = lastR;
     }
 
-    public void setExecutiontime(long executiontime) {
-        this.executetime = executiontime;
+    public void setHitTimes(List<HitTime> hitTimes) {
+        this.hitTimes = hitTimes;
     }
-    public long getExecutiontime() {
-        return executetime;
+
+    @Override
+    public boolean equals(Object obj){
+        if (!(obj instanceof Hit)) return false;
+        Hit hit = (Hit) obj;
+        return (this.x ==(hit.x))&&(this.y==(hit.y))&&(this.r==(hit.r));
     }
+
 
 }
 

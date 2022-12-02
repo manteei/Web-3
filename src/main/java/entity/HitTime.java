@@ -1,26 +1,40 @@
-/*package entity;
+package entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "time")
 public class HitTime {
     @Id
-    @Column(name = "id")
-    private Long id;
-    @OneToMany
-    private List<Hit> hits;
+    @Column
+    @GenericGenerator(name="inc" , strategy="increment")
+    @GeneratedValue(generator="inc")
+    private int id;
+    @Column
+    private String currenttime;
+    @Column
+    private long executetime;
 
-//    @Column(name = "currenttime")
-//    private String currenttime;
-//    @Column(name = "executetime")
-//    private long executetime;
+    @ManyToOne
+    @JoinColumn(name = "hit_id")
+    private Hit hit;
 
-
-
-}*/
+    public void setExecutiontime(long executiontime) {
+        this.executetime = executiontime;
+    }
+    public long getExecutiontime() {
+        return executetime;
+    }
+}

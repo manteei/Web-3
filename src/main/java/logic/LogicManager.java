@@ -1,19 +1,20 @@
 package logic;
 
 import entity.Hit;
+import entity.HitTime;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogicManager {
-    public void fillHit(Hit hit, double x, double y, double r){
+    public void fillHit(Hit hit, HitTime hitTime, double x, double y, double r){
         long startTime = System.nanoTime();
         hit.setX(x);
         hit.setY(y);
         hit.setR(r);
         hit.setIshit(countHit(x, y, r));
-        hit.setCurrenttime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        hit.setExecutiontime(System.nanoTime() - startTime);
+        hitTime.setCurrenttime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        hitTime.setExecutiontime(System.nanoTime() - startTime);
         Hit.setLastR(r);
     }
 

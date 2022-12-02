@@ -2,6 +2,7 @@ package controller;
 
 import database.DbManager;
 import entity.Hit;
+import entity.HitTime;
 import logic.LogicManager;
 import lombok.Data;
 
@@ -19,9 +20,10 @@ public class HitsManager {
 
     public String save() { //todo создать сервис и dao
         Hit hit = new Hit();
+        HitTime hitTime = new HitTime();
         LogicManager logicManager = new LogicManager();
-        logicManager.fillHit(hit, this.x, this.y, this.r);
-        return dbManager.saveToDb(hit);
+        logicManager.fillHit(hit, hitTime, this.x, this.y, this.r);
+        return dbManager.saveToDb(hit, hitTime);
     }
 
     public List<Hit> getHits() {
