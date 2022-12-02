@@ -1,7 +1,4 @@
 package validate;
-
-import exeption.IncorrectDataEx;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;

@@ -1,3 +1,5 @@
+package entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -5,12 +7,18 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
+/**
+ * 1) сделать constrains через hibernate
+ * 2) добавить еще одну сущность и сделать связь между ними
+ *
+ */
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "hit_checker")
+@Table(name = "table_name")
 public class Hit {
     @Id
     @GenericGenerator(name="inc" , strategy="increment")
@@ -31,76 +39,25 @@ public class Hit {
     private long executetime;
     static double lastR;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setR(double r) {
-        this.r = r;
-    }
-
-    public double getR() {
-        return r;
-    }
-
-    public void setHit(boolean ishit) {
-        this.ishit = ishit;
-    }
-
-    public boolean isHit() {
-        return ishit;
-    }
-
-    public void setCurrenttime(String currenttime) {
-        this.currenttime = currenttime;
-    }
-
-    public String getCurrenttime() {
-        return currenttime;
-    }
-
     public static double getLastR() {
         return lastR;
     }
-
     public static void setLastR(double lastR) {
         Hit.lastR = lastR;
     }
 
-
-
-
     public void setExecutiontime(long executiontime) {
         this.executetime = executiontime;
     }
-
-   public long getExecutiontime() {
+    public long getExecutiontime() {
         return executetime;
     }
 
-    public void setPoint(Point point) {
-        this.x = point.getX();
-        this.y = point.getY();
-        this.r = point.getR();
-    }
 }
+
+/**
+ * 1) доделать код чтобы работала база
+ *  2) как хибернейт использует прокси + Lazy инициализация
+ *  3) CascadeType
+ *  4) EJB изнутри
+ */

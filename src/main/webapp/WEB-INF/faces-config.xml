@@ -5,7 +5,7 @@
                                   http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <managed-bean>
         <managed-bean-name>userMBean</managed-bean-name>
-        <managed-bean-class>UserManagedBean</managed-bean-class>
+        <managed-bean-class>controller.HitsManager</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>

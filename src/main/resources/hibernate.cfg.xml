@@ -8,7 +8,7 @@
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="connection.username">postgres</property>
     <property name="connection.password">uJGA!9055</property>
-    <mapping class="Hit"/>
+    <mapping class="entity.Hit"/>
   </session-factory>
 </hibernate-configuration>
 
@@ -23,5 +23,5 @@
 <property name="connection.driver_class">org.postgresql.Driver</property>
 <property name="connection.username">s335182</property>
 <property name="connection.password">xUntDYqupw6TuVBy</property>
-<mapping class="Hit"/>
+<mapping class="entity.Hit"/>
 </session-factory-->
